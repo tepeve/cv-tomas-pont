@@ -1,0 +1,61 @@
+%!TEX TS-program = xelatex
+%!TEX encoding = UTF-8 Unicode
+\documentclass[11pt, a4paper]{awesome-cv}
+
+% Configuración de márgenes
+\geometry{left=1.4cm, top=.8cm, right=1.4cm, bottom=1.8cm, footskip=.5cm}
+\fontdir[fonts/]
+\colorlet{awesome}{awesome-red}
+\setbool{acvSectionColorHighlight}{true}
+\renewcommand{\acvHeaderSocialSep}{\quad\textbar\quad}
+
+%-------------------------------------------------------------------------------
+%   REDEFINICIÓN DESTRUCTURAL DE CVENTRY (CORREGIDA)
+%-------------------------------------------------------------------------------
+\renewcommand*{\cventry}[5]{%
+  \vspace{-2.0mm}
+  \setlength\tabcolsep{0pt}
+  \setlength{\extrarowheight}{0pt}
+  % 1. ENCABEZADO (Mantenemos la tabla solo para esto, garantiza alineación perfecta de fechas)
+  \begin{tabular*}{\textwidth}{@{\extracolsep{\fill}} L{\textwidth - 4.5cm} R{4.5cm}}
+    \ifempty{#2#3}
+      {\entrypositionstyle{#1} & \entrydatestyle{#4} \\}
+      {\entrytitlestyle{#2} & \entrydatestyle{#4} \\
+       \entrypositionstyle{#1} & \entrylocationstyle{#3} \\}
+  \end{tabular*}%
+  % 2. CUERPO (Bullets)
+  % Rompemos el párrafo para salir de la tabla, quitamos indentación y aplicamos el ESTILO ORIGINAL
+  \par\nobreak
+  \vspace{-1mm} % Ajuste fino para pegar los bullets al título
+  \noindent % <--- CRÍTICO: Evita que el texto se mueva a la derecha
+  \descriptionstyle{#5} % <--- CRÍTICO: Restaura la fuente Roboto y el tamaño correcto
+  \par\vspace{5mm} % Espacio seguro después de cada bloque
+}
+
+%-------------------------------------------------------------------------------
+%	DATOS PERSONALES
+%-------------------------------------------------------------------------------
+\name{Tomás}{Pont Vergés}
+\position{Ciencia de Datos{\enskip\cdotp\enskip}Sociología{\enskip\cdotp\enskip}Comunicación}
+\address{Valle Grande 1182, Vicente López, Argentina}
+\mobile{(+54) 911 3015-8395}
+\email{tomaspont@gmail.com}
+\github{tepeve}
+\linkedin{tepeve}
+\extrainfo{\faBirthdayCake\ \ 16/05/1984}
+
+\begin{document}
+
+\makecvheader[C]
+\makecvfooter{\today}{Tomás Pont Verges~~~·~~~Curriculum Vitae}{\thepage}
+
+\input{resume/summary.tex}
+
+\input{resume/skills}
+
+\input{resume/experience}
+
+
+\input{resume/education.tex}
+
+\end{document}
